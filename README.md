@@ -1,6 +1,6 @@
 # Vue Property Decorator
 
-[![npm](https://img.shields.io/npm/v/vue-property-decorator.svg)](https://www.npmjs.com/package/vue-property-decorator)
+[![npm](https://img.shields.io/npm/v/@gongzza/vue-property-decorator.svg)](https://www.npmjs.com/package/@gongzza/vue-property-decorator)
 
 This library fully depends on [vue-class-component](https://github.com/vuejs/vue-class-component).
 
@@ -11,7 +11,7 @@ MIT License
 ## Install
 
 ```bash
-npm i -S vue-property-decorator
+npm i -S @gongzza/vue-property-decorator
 ```
 
 ## Usage
@@ -26,7 +26,7 @@ There are 6 decorators:
 * `@Component` (`export Component from 'vue-class-component'`)
 
 ```typescript
-import { Component, Inject, Model, Prop, Vue, Watch } from 'vue-property-decorator'
+import { Component, Inject, Model, Prop, Vue, Watch } from '@gongzza/vue-property-decorator'
 
 const s = Symbol('baz')
 
