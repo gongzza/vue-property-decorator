@@ -20,7 +20,7 @@ test('@Inject decorator test', t => {
   @Component
   class Child extends Vue {
     @Inject(s) foo: string
-    @Inject() bar: string
+    @Inject bar: string
   }
 
   const child = new Child({ parent })
@@ -30,7 +30,7 @@ test('@Inject decorator test', t => {
   @Component
   class GrandChild extends Vue {
     @Inject(s) foo: string
-    @Inject() bar: string
+    @Inject bar: string
   }
 
   const grandChild = new GrandChild({ parent: child })
@@ -39,25 +39,38 @@ test('@Inject decorator test', t => {
 })
 
 test('@Model decorator test', t => {
-  @Component
-  class Test extends Vue {
-    @Model('change')
-    checked: boolean
+  {
+    @Component
+    class Test extends Vue {
+      @Model
+      checked: boolean
+    }
+
+    const { $options } = new Test()
+    t.deepEqual($options.model, { prop: 'checked', event: 'checked' })
   }
 
-  const { $options } = new Test()
-  t.deepEqual($options.model, { prop: 'checked', event: 'change' })
+  {
+    @Component
+    class Test extends Vue {
+      @Model('change')
+      checked: boolean
+    }
+
+    const { $options } = new Test()
+    t.deepEqual($options.model, { prop: 'checked', event: 'change' })
+  }
 })
 
 test('@Prop decorator test', t => {
   @Component
   class Test extends Vue {
 
-    @Prop(Number) propA: number
-    @Prop({ default: 'propB' }) propB: string
+    @Prop propA: number
+    @Prop('propB') propB: string
     @Prop([Boolean, String]) propC: boolean | string
     @Prop({ type: null }) propD: any
-    @Prop() propE: boolean
+    @Prop propE: boolean
   }
 
   const { $options } = new Test()
@@ -79,7 +92,7 @@ test('@Provide decorator test', t => {
   {
     @Component
     class Parent extends Vue {
-      @Provide() one = 'one'
+      @Provide one = 'one'
       @Provide('two') twelve = 'two'
     }
 
@@ -87,8 +100,8 @@ test('@Provide decorator test', t => {
 
     @Component
     class Child extends Vue {
-      @Inject() one: string
-      @Inject() two: string
+      @Inject one: string
+      @Inject two: string
     }
 
     const child = new Child({ parent })
@@ -104,7 +117,7 @@ test('@Provide decorator test', t => {
       }
     })
     class Parent extends Vue {
-      @Provide() one = 'one'
+      @Provide one = 'one'
       @Provide('two') twelve = 'two'
     }
 
@@ -112,9 +125,9 @@ test('@Provide decorator test', t => {
 
     @Component
     class Child extends Vue {
-      @Inject() zero: string
-      @Inject() one: string
-      @Inject() two: string
+      @Inject zero: string
+      @Inject one: string
+      @Inject two: string
     }
 
     const child = new Child({ parent })
@@ -133,7 +146,7 @@ test('@Provide decorator test', t => {
       }
     })
     class Parent extends Vue {
-      @Provide() one = 'one'
+      @Provide one = 'one'
       @Provide('two') twelve = 'two'
     }
 
@@ -141,9 +154,9 @@ test('@Provide decorator test', t => {
 
     @Component
     class Child extends Vue {
-      @Inject() zero: string
-      @Inject() one: string
-      @Inject() two: string
+      @Inject zero: string
+      @Inject one: string
+      @Inject two: string
     }
 
     const child = new Child({ parent })
