@@ -1,6 +1,6 @@
 {
   "name": "@gongzza/vue-property-decorator",
-  "version": "5.2.1",
+  "version": "5.2.2",
   "description": "property decorators for Vue Component",
   "main": "lib/vue-property-decorator.umd.js",
   "keywords": [
