@@ -1,6 +1,6 @@
 {
   "name": "@gongzza/vue-property-decorator",
-  "version": "5.2.2",
+  "version": "5.2.3",
   "description": "property decorators for Vue Component",
   "main": "lib/vue-property-decorator.umd.js",
   "keywords": [
@@ -35,10 +35,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kaorun343/vue-property-decorator.git"
+    "url": "git+https://github.com/gongzza/vue-property-decorator.git"
   },
   "bugs": {
-    "url": "https://github.com/kaorun343/vue-property-decorator/issues"
+    "url": "https://github.com/gongzza/vue-property-decorator/issues"
   },
-  "homepage": "https://github.com/kaorun343/vue-property-decorator#readme"
+  "homepage": "https://github.com/gongzza/vue-property-decorator#readme"
 }
