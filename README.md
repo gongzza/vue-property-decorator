@@ -16,24 +16,39 @@ npm i -S @gongzza/vue-property-decorator
 
 ## Usage
 
-There are 6 decorators:
+There are 7 decorators:
 
+* `@Emit`
 * `@Inject`
 * `@Model`
 * `@Prop`
 * `@Provide`
 * `@Watch`
-* `@Component` (`export Component from 'vue-class-component'`)
+* `@Component` (**exported from** `vue-class-component`)
 
 ```typescript
+<<<<<<< HEAD
 import { Component, Inject, Model, Prop, Vue, Watch } from '@gongzza/vue-property-decorator'
+=======
+import { Component, Emit, Inject, Model, Prop, Provide, Vue, Watch } from 'vue-property-decorator'
+>>>>>>> upstream/master
 
 const s = Symbol('baz')
 
 @Component
 export class MyComponent extends Vue {
 
+<<<<<<< HEAD
   @Inject foo: string
+=======
+  @Emit()
+  addToCount(n: number){ this.count += n }
+
+  @Emit('reset')
+  resetCount(){ this.count = 0 }
+
+  @Inject() foo: string
+>>>>>>> upstream/master
   @Inject('bar') bar: string
   @Inject(s) baz: string
 
@@ -48,10 +63,14 @@ export class MyComponent extends Vue {
   @Prop([String, Boolean])
   propC: string | boolean
 
+<<<<<<< HEAD
   @Prop({ type: null })
   propD: any
 
   @Provide foo = 'foo'
+=======
+  @Provide() foo = 'foo'
+>>>>>>> upstream/master
   @Provide('bar') baz = 'bar'
 
   @Watch('child')
@@ -80,13 +99,13 @@ export const MyComponent = Vue.extend({
     event: 'change'
   },
   props: {
-    propA: Number,
+    checked: Boolean,
+    propA: Number,
     propB: {
       type: String,
       default: 'default value'
     },
     propC: [String, Boolean],
-    propD: { type: null }
   },
   data () {
     return {
@@ -99,8 +118,16 @@ export const MyComponent = Vue.extend({
       foo: this.foo,
       bar: this.baz
     }
-  }
+  },
   methods: {
+    addToCount(n){
+      this.count += n
+      this.$emit("add-to-count", n)
+    },
+    resetCount(){
+      this.count = 0
+      this.$emit("reset")
+    },
     onChildChanged(val, oldVal) { },
     onPersonChanged(val, oldVal) { }
   },
@@ -118,6 +145,8 @@ export const MyComponent = Vue.extend({
   }
 })
 ```
+
+## emitDecoratorMetadata
 
 As you can see at `propA` and `propB`, the type can be inferred automatically when it's a simple type. For more complex types like enums you do need to specify it specifically.
 Also this library needs to have `emitDecoratorMetadata` set to `true` for this to work.

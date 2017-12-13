@@ -4,6 +4,11 @@ import 'reflect-metadata'
 
 type Key = string | symbol
 
+/**
+ * decorator of an inject
+ * @param key key
+ * @return PropertyDecorator
+ */
 function makeInject(key?: Key): PropertyDecorator {
   return createDecorator((componentOptions, k) => {
     if (typeof componentOptions.inject === 'undefined') {

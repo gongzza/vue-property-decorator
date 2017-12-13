@@ -4,6 +4,11 @@ import 'reflect-metadata'
 
 type Key = string | symbol
 
+/**
+ * decorator of a provide
+ * @param key key
+ * @return PropertyDecorator | void
+ */
 function makeProvide(key?: Key): PropertyDecorator {
   return createDecorator((componentOptions, k) => {
     let provide: any = componentOptions.provide

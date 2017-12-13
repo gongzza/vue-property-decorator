@@ -2,10 +2,25 @@ import Vue, { PropOptions } from 'vue'
 import { createDecorator } from 'vue-class-component'
 import 'reflect-metadata'
 
-function makeModel(event?: string): PropertyDecorator {
-  return createDecorator((componentOptions, prop) => {
-    componentOptions.model = { prop, event: event || prop }
-  })
+export type Constructor = {
+  new(...args: any[]): any
+}
+
+/**
+ * decorator of model
+ * @param  event event name
+ * @return PropertyDecorator
+ */
+function makeModel(event?: string, options: (PropOptions | Constructor[] | Constructor) = {}): PropertyDecorator {
+  return function (target: Vue, key: string) {
+    if (!Array.isArray(options) && typeof (options as PropOptions).type === 'undefined') {
+      (options as PropOptions).type = Reflect.getMetadata('design:type', target, key)
+    }
+    createDecorator((componentOptions, k) => {
+      (componentOptions.props || (componentOptions.props = {}) as any)[k] = options
+      componentOptions.model = { prop: k, event: event || k }
+    })(target, key)
+  }
 }
 
 function Model(proto: Vue, key: string): void
