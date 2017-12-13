@@ -27,28 +27,20 @@ There are 7 decorators:
 * `@Component` (**exported from** `vue-class-component`)
 
 ```typescript
-<<<<<<< HEAD
-import { Component, Inject, Model, Prop, Vue, Watch } from '@gongzza/vue-property-decorator'
-=======
 import { Component, Emit, Inject, Model, Prop, Provide, Vue, Watch } from 'vue-property-decorator'
->>>>>>> upstream/master
 
 const s = Symbol('baz')
 
 @Component
 export class MyComponent extends Vue {
 
-<<<<<<< HEAD
-  @Inject foo: string
-=======
   @Emit()
   addToCount(n: number){ this.count += n }
 
   @Emit('reset')
   resetCount(){ this.count = 0 }
 
-  @Inject() foo: string
->>>>>>> upstream/master
+  @Inject foo: string
   @Inject('bar') bar: string
   @Inject(s) baz: string
 
@@ -63,14 +55,10 @@ export class MyComponent extends Vue {
   @Prop([String, Boolean])
   propC: string | boolean
 
-<<<<<<< HEAD
   @Prop({ type: null })
   propD: any
 
   @Provide foo = 'foo'
-=======
-  @Provide() foo = 'foo'
->>>>>>> upstream/master
   @Provide('bar') baz = 'bar'
 
   @Watch('child')
